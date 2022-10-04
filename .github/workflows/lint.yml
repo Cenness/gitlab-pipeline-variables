@@ -1,0 +1,28 @@
+name: lint
+
+on:
+  # Triggers the workflow on push or pull request events
+  push:
+  pull_request:
+  # Run monthly
+  schedule:
+    - cron: '0 12 1 * *'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  lint-ext:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so job can access it
+      - uses: actions/checkout@v3
+
+      # Get nodejs env
+      - uses: actions/setup-node@v3
+
+      # Install and run lint
+      - run: |
+          sed -i "s/CI_COMMIT_TAG/0.1.0/" manifest.json
+          npm install --global web-ext
+          web-ext lint --self-hosted --warnings-as-errors ---ignore-files "info/*"
