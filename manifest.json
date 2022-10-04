@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+  "name": "Show pipeline variables in Gitlab",
+  "version": "CI_COMMIT_TAG",
+
+  "description": "Show pipeline variables in Gitlab",
+
+  "permissions": [
+    "tabs"
+  ],
+
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["script.js"]
+    }
+  ],
+
+  "icons": {
+    "48": "gitlab-show-pipeline-variables-48.png",
+    "64": "gitlab-show-pipeline-variables-64.png",
+    "96": "gitlab-show-pipeline-variables-96.png",
+    "128": "gitlab-show-pipeline-variables-128.png",
+    "256": "gitlab-show-pipeline-variables-256.png"
+  }
+}
