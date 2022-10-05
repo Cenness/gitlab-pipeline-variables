@@ -1,6 +1,5 @@
 function createTableFromJSON(arr) {
-
-  // exit if there is no variables
+  // exit if there are no variables
   if (!arr.length) { return; };
 
   var divForTheTable = document.createElement("div");
@@ -27,8 +26,7 @@ function createTableFromJSON(arr) {
 };
 
 browser.runtime.onMessage.addListener((message) => {
-
-  // exit if vars already there
+  // exit if the table has been injected previously
   if (document.getElementById("gitlab-ext-variables")) { return; };
 
   var host = message.urlParts[1];
@@ -41,5 +39,4 @@ browser.runtime.onMessage.addListener((message) => {
     createTableFromJSON(out);
   })
   .catch(err => { throw err });
-
 });
