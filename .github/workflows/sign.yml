@@ -26,9 +26,7 @@ jobs:
           web-ext sign --channel unlisted --ignore-files "info/*"
           mv ./web-ext-artifacts/*.xpi ./web-ext-artifacts/gitlab-pipeline-variables-${GITHUB_REF_NAME}.xpi
 
-      # Get xpi
-      - uses: actions/upload-artifact@v3
+      # Add xpi to release
+      - uses: softprops/action-gh-release@v1
         with:
-          name: extension-file
-          path: ${{ github.workspace }}/web-ext-artifacts/*.xpi
-          if-no-files-found: error
+          files: ${{ github.workspace }}/web-ext-artifacts/*.xpi
