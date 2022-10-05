@@ -1,0 +1,34 @@
+name: sign
+
+on:
+  push:
+    tags:
+    - '*'
+
+jobs:
+  lint-ext:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so job can access it
+      - uses: actions/checkout@v3
+
+      # Get nodejs env
+      - uses: actions/setup-node@v3
+
+      # Install and run sign
+      - env:
+          WEB_EXT_API_SECRET: ${{ secrets.FF_API_SECRET }}
+          WEB_EXT_API_KEY: ${{ secrets.FF_API_KEY }}
+          WEB_EXT_ID: gitlab-pipeline-variables@cenness
+        run: |
+          sed -i "s/CI_COMMIT_TAG/${GITHUB_REF_NAME}/" manifest.json
+          npm install --global web-ext
+          web-ext sign --channel unlisted --ignore-files "info/*"
+          mv ./web-ext-artifacts/*.xpi ./web-ext-artifacts/gitlab-pipeline-variables-${GITHUB_REF_NAME}.xpi
+
+      # Get xpi
+      - uses: actions/upload-artifact@v3
+        with:
+          name: extension-file
+          path: ${{ github.workspace }}/web-ext-artifacts/*.xpi
+          if-no-files-found: error

@@ -25,4 +25,4 @@ jobs:
       - run: |
           sed -i "s/CI_COMMIT_TAG/0.1.0/" manifest.json
           npm install --global web-ext
-          web-ext lint --self-hosted --warnings-as-errors ---ignore-files "info/*"
+          web-ext lint --self-hosted --warnings-as-errors --ignore-files "info/*"
