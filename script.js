@@ -25,18 +25,26 @@ function createTableFromJSON(arr) {
   divContainer.appendChild(divForTheTable);
 };
 
-browser.runtime.onMessage.addListener((message) => {
-  // exit if the table has been injected previously
-  if (document.getElementById("gitlab-ext-variables")) { return; };
+function checkTab() {
+  var tab_url = document.querySelector('meta[property="og:url"]').content
+  if (tab_url) {
+    var match = tab_url.match("^https://gitlab([.a-z-]+)/(.*?)(?:/-)?/pipelines/([0-9]+)$");
+    if (match) {
+      // exit if the table has been injected previously
+      if (document.getElementById("gitlab-ext-variables")) { return; };
 
-  var host = message.urlParts[1];
-  var repo = message.urlParts[2];
-  var pipeline = message.urlParts[3];
+      var host = match[1];
+      var repo = match[2];
+      var pipeline = match[3];
 
-  fetch("https://gitlab" + host + "/api/v4/projects/" + encodeURIComponent(repo) + "/pipelines/" + pipeline + "/variables")
-  .then(res => res.json())
-  .then(out => {
-    createTableFromJSON(out);
-  })
-  .catch(err => { throw err });
-});
+      fetch("https://gitlab" + host + "/api/v4/projects/" + encodeURIComponent(repo) + "/pipelines/" + pipeline + "/variables")
+      .then(res => res.json())
+      .then(out => {
+        createTableFromJSON(out);
+      })
+      .catch(err => { throw err });
+    }
+  }
+}
+
+checkTab()
