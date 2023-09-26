@@ -4,7 +4,7 @@ function createTableFromJSON(arr) {
 
   var divForTheTable = document.createElement("div");
   divForTheTable.id = "gitlab-ext-variables"
-  divForTheTable.className = "well-segment"
+  divForTheTable.className = "gl-mb-3"
 
   var table = document.createElement("table");
   table.style = "font-family:monospace;"
@@ -21,7 +21,7 @@ function createTableFromJSON(arr) {
   }
 
   divForTheTable.appendChild(table);
-  var divContainer = document.getElementsByClassName("info-well")[0];
+  var divContainer = document.querySelector('[data-qa-selector="pipeline_details_header"]');
   divContainer.appendChild(divForTheTable);
 };
 
