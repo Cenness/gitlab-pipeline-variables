@@ -7,7 +7,7 @@ function createTableFromJSON(arr) {
   divForTheTable.className = "gl-mb-3"
 
   var table = document.createElement("table");
-  table.style = "font-family:monospace;"
+  table.style = "font-family:monospace; margin-top: 1rem;"
 
   for (var i = 0; i < arr.length; i++) {
     tr = table.insertRow(-1);
