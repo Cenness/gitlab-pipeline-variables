@@ -21,7 +21,7 @@ function createTableFromJSON(arr) {
   }
 
   divForTheTable.appendChild(table);
-  var divContainer = document.querySelector('[data-testid="pipeline_details_header"]').children[0];
+  var divContainer = document.querySelector('[data-testid="pipeline-details-header"]').children[0];
   divContainer.appendChild(divForTheTable);
 };
 
