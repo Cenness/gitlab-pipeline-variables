@@ -13,11 +13,27 @@ function createTableFromJSON(arr) {
     tr = table.insertRow(-1);
 
     var tabK = tr.insertCell(0);
-    tabK.textContent = arr[i].key;
-    tabK.style = "padding-right: 2rem;";
+    Object.assign(tabK, {
+      textContent: arr[i].key,
+      style: "padding-right: 2rem;",
+      id: "gl-ext-key-" + i,
+      data-clipboard-target: "#gl-ext-key-" + i
+      title: "Copy name",
+      aria-live: "polite",
+      data-placement: "bottom",
+      data-toggle: "tooltip"
+    });
 
     var tabV = tr.insertCell(1);
-    tabV.textContent = arr[i].value;
+    Object.assign(tabV, {
+      textContent: arr[i].value,
+      id: "gl-ext-val-" + i,
+      data-clipboard-target: "#gl-ext-val-" + i
+      title: "Copy value",
+      aria-live: "polite",
+      data-placement: "bottom",
+      data-toggle: "tooltip"
+    });
   }
 
   divForTheTable.appendChild(table);
