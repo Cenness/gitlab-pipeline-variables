@@ -4,6 +4,7 @@
   "version": "CI_COMMIT_TAG",
 
   "description": "Show pipeline variables in Gitlab",
+  "browser_specific_settings": {"gecko": {"id": "{2e81c269-257e-48d9-85d1-09b7da0b7f23}"}}
 
   "content_scripts": [
     {
