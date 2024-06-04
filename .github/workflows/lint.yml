@@ -16,10 +16,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so job can access it
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       # Get nodejs env
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
 
       # Install and run lint
       - run: |

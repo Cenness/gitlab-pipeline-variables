@@ -10,16 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so job can access it
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       # Get nodejs env
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
 
       # Install and run sign
       - env:
           WEB_EXT_API_SECRET: ${{ secrets.FF_API_SECRET }}
           WEB_EXT_API_KEY: ${{ secrets.FF_API_KEY }}
-          WEB_EXT_ID: gitlab-pipeline-variables@cenness
         run: |
           sed -i "s/CI_COMMIT_TAG/${GITHUB_REF_NAME}/" manifest.json
           npm install --global web-ext
@@ -27,6 +26,6 @@ jobs:
           mv ./web-ext-artifacts/*.xpi ./web-ext-artifacts/gitlab-pipeline-variables-${GITHUB_REF_NAME}.xpi
 
       # Add xpi to release
-      - uses: softprops/action-gh-release@v1
+      - uses: softprops/action-gh-release@v2
         with:
           files: ${{ github.workspace }}/web-ext-artifacts/*.xpi
