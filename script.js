@@ -33,7 +33,7 @@ function createTableFromJSON(arr) {
   }
 
   divForTheTable.appendChild(table);
-  var divContainer = document.querySelector('[data-testid="pipeline-header"]').children[0].children[0];
+  var divContainer = document.querySelector('[data-testid="pipeline-header"]');
   divContainer.appendChild(divForTheTable);
 }
 
