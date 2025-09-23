@@ -3,7 +3,7 @@ Show variables for Gitlab pipelines
 ![screenshot](/info/screen.png)
 
 A Firefox extension that injects table in pipeline info well.
-This information is not available (yet) in the Gitlab UI, but is available in the API, which is what the extension uses.
+This information is available in the Gitlab UI starting from 18.4 ([docs](https://docs.gitlab.com/ci/pipelines/#view-manual-pipeline-variables)), but requires flipping a per-project setting and two clicks to see values. Thankfully, it's also available in the API, which is what the extension uses.
 
 Works on self-hosted instances - regexp `^https://gitlab([.a-z-]+)/...`
 
