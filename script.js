@@ -24,6 +24,7 @@ function createTableFromJSON(arr) {
 
     var tabV = tr.insertCell(1);
     tabV.textContent = arr[i].value;
+    tabV.style = "white-space: pre;";
     tabV.title = "Copy value";
     tabV.id = "gl-ext-val-" + i;
     tabV.setAttribute("data-clipboard-target", "#gl-ext-val-" + i);
